@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .icon-bar {
+                width: 90px; /* Set a specific width */
+                background-color: rgb(246, 242, 242); /* Dark-grey background */
+                }
+
+            .icon-bar a {
+                display: block; /* Make the links appear below each other instead of side-by-side */
+                text-align: center; /* Center-align text */
+                padding: 16px; /* Add some padding */
+                transition: all 0.3s ease; /* Add transition for hover effects */
+                color: rgb(0, 0, 0); /* White text color */
+                font-size: 36px; /* Increased font-size */
+                }
+
+            .icon-bar a:hover {
+                background-color: rgb(81, 185, 98); /* Add a hover color */
+                }
+
+            .active {
+                background-color: #04AA6D; /* Add an active/current color */
+                }
+
+        </style>
+    </head>
+    <body>
+        <div id="root">
+        </div>
+        <script type="text/babel">
+            const rootHandle = document.getElementById('root')
+            const {useState}=React
+
+            const customersData=[{
+                name:'Diane Cooper',
+                email:'diane.cooper@example.com',
+                gender:'Female',
+                birthday:'Feb 24th,1997',
+                phoneNumber:'(239) 555-018',
+                memberStatus:'Active Member',
+                pastAppointments:15,
+                upcomingAppointments:2
+            },{
+                name:'Diane Cooper',
+                email:'diane.cooper@example.com',
+                gender:'Female',
+                birthday:'Feb 24th,1997',
+                phoneNumber:'(239) 555-018',
+                memberStatus:'Active Member',
+                pastAppointments:15,
+                upcomingAppointments:2
+            },{
+                name:'Diane Cooper',
+                email:'diane.cooper@example.com',
+                gender:'Female',
+                birthday:'Feb 24th,1997',
+                phoneNumber:'(239) 555-018',
+                memberStatus:'Active Member',
+                pastAppointments:15,
+                upcomingAppointments:2
+            },{
+                name:'Diane Cooper',
+                email:'diane.cooper@example.com',
+                gender:'Female',
+                birthday:'Feb 24th,1997',
+                phoneNumber:'(239) 555-018',
+                memberStatus:'Active Member',
+                pastAppointments:15,
+                upcomingAppointments:2
+            },{
+                name:'Diane Cooper',
+                email:'diane.cooper@example.com',
+                gender:'Female',
+                birthday:'Feb 24th,1997',
+                phoneNumber:'(239) 555-018',
+                memberStatus:'Active Member',
+                pastAppointments:15,
+                upcomingAppointments:2
+            },{
+                name:'Diane Cooper',
+                email:'diane.cooper@example.com',
+                gender:'Female',
+                birthday:'Feb 24th,1997',
+                phoneNumber:'(239) 555-018',
+                memberStatus:'Active Member',
+                pastAppointments:15,
+                upcomingAppointments:2
+            }]
+
+            const VerticalButtons=(props)=>{
+                return (
+                <div className='col-md-1'>
+                    <div class="icon-bar">
+                        <a class="active" href="#"><i class="fa fa-home"></i></a>
+                        <a href="#"><i class='fa fa-plus'></i><p style={{fontSize:'10px'}}>NEW</p></a>
+                        <a href="#"><i class="fa fa-user-o"></i><p style={{fontSize:'10px'}}>PATIENT</p></a>
+                        <a href="#"><i class="fa fa-folder-open-o"></i><p style={{fontSize:'10px'}}>FOLDER</p></a>
+                        <a href="#"><i class="fa fa-cloud-upload"></i><p style={{fontSize:'10px'}}>UPLOAD</p></a>
+                        <a href="#"><i class="fa fa-file-text-o"></i><p style={{fontSize:'10px'}}>REPORT</p></a>
+                        <a href="#"><i class="fa fa-gear"></i><p style={{fontSize:'10px'}}>SETTINGS</p></a>
+                        <a href="#"><i class="fa fa-sign-out"></i><p style={{fontSize:'10px'}}>LOGOUT</p></a>
+                    </div>
+                </div>
+                )
+            }
+
+            const MemberStatusContainer=(props)=>{
+                return (
+                    <div className='col-md-5'>
+                        <label>Member Status</label>
+                        <select>
+                            <option>Active member</option>
+                            <option>Inactive member</option>
+                        </select>
+                    </div>
+                )
+            }
+
+            const GenderContainer=(props)=>{
+                return (
+                    <div className='col-md-3'>
+                        <label>Gender</label>
+                        <select>
+                            <option>Female</option>
+                            <option>Male</option>
+                            <option>Others</option>
+                        </select>
+                    </div>
+                )
+            }
+
+            const NavBar=(props)=>{
+                return (
+                    <div className='row'>
+                        <Search/>
+                        <GenderContainer/>
+                        <MemberStatusContainer/>
+                    </div>
+                )
+            }
+            const Search=(props)=>{
+                const [term,setTerm]=useState('')
+
+                const handleChange=(e)=>{
+                    const term=e.target.value
+                    setTerm(term)
+                }
+                
+                return (
+                    <div className='col-md-4'>
+                        <input type="text" value={term} onChange={handleChange} className='form-control' placeholder="search by name or mobile"/>
+                    </div>
+                )
+            }
+
+            const CustomerTable=(props)=>{
+                const {customer}=props
+                return (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Gender</th>
+                                <th>Birthday</th>
+                                <th>Phone Number</th>
+                                <th>Member Status</th>
+                                <th>Past</th>
+                                <th>Upcoming</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{customer.gender}</td>
+                                <td>{customer.birthday}</td>
+                                <td>{customer.phoneNumber}</td>
+                                <td>{customer.memberStatus}</td>
+                                <td>{customer.pastAppointments}</td>
+                                <td>{customer.upcomingAppointments}</td>
+                                <td><b><span style={{color: 'green'}}>VIEW ECG REPORT DOCUMENTS</span></b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                )
+            }
+
+            const CustomersContainer=(props)=>{
+                const {customer}=props
+                return(
+                    <div>
+                        <text><b>{customer.name}</b></text><text>{customer.email}</text>
+                        <CustomerTable customer={customer}/>
+                        <hr/>
+                    </div>
+                )
+            }
+            
+            const AppointmentsContainer=(props)=>{
+                const {customers}=props
+                console.log(customers)
+                return (
+                    <div className='col-md-11'>
+                        <div>
+                            <NavBar/>
+                            <hr/>
+                            {
+                                customers.map((customer,i)=>{
+                                    return <CustomersContainer key={i} customer={customer}/>
+                                })
+                            }
+                        </div>
+                    </div>
+                )
+            }
+
+            const App=(props)=>{
+                const [customers,setCustomers]=useState(customersData)
+                return (
+                    <div className='row'>
+                        <VerticalButtons/>
+                        <AppointmentsContainer customers={customers}/>
+                    </div>
+                )
+            }
+            
+            ReactDOM.render(<App/>,rootHandle)
+        </script>
+    </body>
+</html>
